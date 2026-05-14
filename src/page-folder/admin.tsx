@@ -13,7 +13,7 @@ const Admin = () => {
       >
         <TabsList>
           <TabsTrigger value='borrowedList'>Borrowed List</TabsTrigger>
-          <TabsTrigger value='user'>User</TabsTrigger>
+          <TabsTrigger value='user'>Author</TabsTrigger>
           <TabsTrigger value='bookList'>Book List</TabsTrigger>
         </TabsList>
         <TabsContent value='borrowedList'>
