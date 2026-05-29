@@ -22,7 +22,7 @@ const ReviewCard: React.FC<ReviewCardProp> = ({ data }) => {
             {data.user.name}
           </p>
           <p className='font-medium text-sm sm:text-base tracking-tight'>
-            {data.createdAt}
+            {new Date(data.createdAt).toLocaleDateString()}
           </p>
         </div>
       </div>

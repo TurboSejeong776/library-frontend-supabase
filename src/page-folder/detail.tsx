@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { addToCart } from '@/redux/cartSlice';
 
 import { Skeleton } from '@/components/ui/skeleton';
+import DetailSK from '@/reusables/skeletons/DetailSK';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -52,7 +53,7 @@ const Detail = () => {
     enabled: !!bookId,
   });
 
-  if (isBookLoading || isRecommendedLoading) return <div>Loading...</div>;
+  if (isBookLoading || isRecommendedLoading) return <DetailSK />;
   if (bookError) return <div>Failed to load book details</div>;
   if (recommendedError) return <div>Failed to load recommended books</div>;
   if (!book) return <div>No book found</div>;
