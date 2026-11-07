@@ -5,12 +5,14 @@ import { getAuthorBooks } from '@/api/service/author';
 
 import AuthorCard from '@/reusables/AuthorCard';
 import BookCard from '@/reusables/BookCard';
+import BookCardS from '@/reusables/skeletons/BookCardS';
+import AuthorCardS from '@/reusables/AuthorCardSK';
 
 const Author = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const authorId = Number(id);
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['authorBooks', authorId],
     queryFn: () => getAuthorBooks(authorId),
     enabled: !!id,
@@ -24,7 +26,11 @@ const Author = () => {
         className='flex flex-col w-[361px] sm:w-[1200px] mt-[80px] sm:mt-[120px] m-auto gap-[16px] sm:gap-[24px] justify-center'
       >
         {/* Render author card here */}
-        {data?.data.author && <AuthorCard auth={data.data.author} />}
+        {isLoading ? (
+          <AuthorCardS />
+        ) : data?.data.author ? (
+          <AuthorCard auth={data.data.author} />
+        ) : null}
         <div
           id='authorBookBase'
           className='flex flex-col w-full gap-[16px] sm:gap-[24px] sm:mt-[16px]'
@@ -34,22 +40,26 @@ const Author = () => {
           </p>
           <div id='authorBookField' className='flex flex-wrap gap-[16px]'>
             {/* Render author's book here */}
-            {data?.data.books.map((book) => (
-              <BookCard
-                onClick={() => navigate(`/Detail/${book.id}`)}
-                key={book.id}
-                book={{
-                  id: book.id,
-                  title: book.title,
-                  coverImage: book.coverImage,
-                  rating: book.rating,
-                }}
-                author={{
-                  id: data.data.author.id,
-                  name: data.data.author.name,
-                }}
-              />
-            ))}
+            {isLoading
+              ? Array.from({ length: 6 }).map((_, i) => <BookCardS key={i} />)
+              : data?.data.books.map((book) => (
+                  <div className='cursor-pointer hover:border-[1px] border-blue-600 rounded-2xl'>
+                    <BookCard
+                      onClick={() => navigate(`/Detail/${book.id}`)}
+                      key={book.id}
+                      book={{
+                        id: book.id,
+                        title: book.title,
+                        coverImage: book.coverImage,
+                        rating: book.rating,
+                      }}
+                      author={{
+                        id: data.data.author.id,
+                        name: data.data.author.name,
+                      }}
+                    />
+                  </div>
+                ))}
           </div>
         </div>
       </div>

@@ -367,7 +367,9 @@ const Detail = () => {
           >
             {book.data.reviews.length > 0 ? (
               book.data.reviews.map((review) => (
-                <ReviewCard key={review.id} data={review} />
+                <div className='cursor-pointer'>
+                  <ReviewCard key={review.id} data={review} />
+                </div>
               ))
             ) : (
               <p className='text-sm sm:text-base text-gray-500'>Empty!</p>
@@ -403,17 +405,19 @@ const Detail = () => {
           >
             {/* Render recommended books or books by author here because database doesn't really provide related books lol */}
             {recommended?.data?.books?.map((recBook: RecommendedBooks) => (
-              <BookCard
-                onClick={() => navigate(`/Detail/${recBook.id}`)}
-                key={recBook.id}
-                book={{
-                  id: recBook.id,
-                  title: recBook.title,
-                  coverImage: recBook.coverImage,
-                  rating: recBook.rating,
-                }}
-                author={recBook.author}
-              />
+              <div className='cursor-pointer hover:border-[1px] border-blue-600 rounded-2xl'>
+                <BookCard
+                  onClick={() => navigate(`/Detail/${recBook.id}`)}
+                  key={recBook.id}
+                  book={{
+                    id: recBook.id,
+                    title: recBook.title,
+                    coverImage: recBook.coverImage,
+                    rating: recBook.rating,
+                  }}
+                  author={recBook.author}
+                />
+              </div>
             ))}
           </div>
         </div>

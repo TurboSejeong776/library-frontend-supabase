@@ -120,17 +120,19 @@ const Home = () => {
           {isPending
             ? Array.from({ length: 6 }).map((_, i) => <BookCardS key={i} />)
             : data?.data.books.map((book) => (
-                <BookCard
-                  onClick={() => navigate(`/Detail/${book.id}`)}
-                  key={book.id}
-                  book={{
-                    id: book.id,
-                    title: book.title,
-                    coverImage: book.coverImage,
-                    rating: book.rating,
-                  }}
-                  author={{ id: book.author.id, name: book.author.name }}
-                />
+                <div className='cursor-pointer hover:border-[1px] border-blue-600 rounded-2xl'>
+                  <BookCard
+                    onClick={() => navigate(`/Detail/${book.id}`)}
+                    key={book.id}
+                    book={{
+                      id: book.id,
+                      title: book.title,
+                      coverImage: book.coverImage,
+                      rating: book.rating,
+                    }}
+                    author={{ id: book.author.id, name: book.author.name }}
+                  />
+                </div>
               ))}
         </div>
       </div>
