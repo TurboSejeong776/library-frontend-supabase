@@ -4,11 +4,11 @@ This is library / book-borrowing app made as my portfolio.
 
 # Features
 
-+Login and registration
-+Separate admin dashboard
-+Mock checkout for borrowing
-+Cart system
-+Backend that provides data (books, borrows, reviews, authors), made using Supabase
+- Login and registration
+- Separate admin dashboard
+- Mock checkout for borrowing
+- Cart system
+- Backend that provides data (books, borrows, reviews, authors), made using Supabase
 
 # How to use
 
