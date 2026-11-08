@@ -28,8 +28,8 @@ const BorrowCardAlt: React.FC<BorrowCardProp> = ({ book }) => {
               book.status == 'BORROWED'
                 ? 'bg-[#24A5000D] text-[#24A500]'
                 : book.status === 'RETURNED'
-                ? 'bg-[#1C65DA0D] text-[#1C65DA]'
-                : 'bg-[#EE1D521A] text-[#EE1D52]'
+                  ? 'bg-[#1C65DA0D] text-[#1C65DA]'
+                  : 'bg-[#EE1D521A] text-[#EE1D52]'
             }`}
           >
             {book.status}
@@ -67,11 +67,9 @@ const BorrowCardAlt: React.FC<BorrowCardProp> = ({ book }) => {
           </p>
         </div>
 
-        <Separator />
-
-        <div className='flex flex-col w-[110px]'>
+        <div className='flex flex-col min-w-0 ml-auto'>
           <p className='font-semibold text-sm sm:text-base tracking-tight'>
-            borrower's name
+            Borrower's name
           </p>
           <p className='font-bold text-base sm:text-lg tracking-tight'>
             {book.user.name}
